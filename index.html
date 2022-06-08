@@ -72,6 +72,11 @@
             item.classList.add(className);
           })
         }
+        removeClass(className){
+          this.elements.forEach((item)=> {
+            item.classList.remove(className);
+          })
+        }
         hasClass(className){
           let result = false;
           this.elements.forEach((item)=> {
@@ -115,6 +120,14 @@
       console.log($$('button.btn1'))
       */
 
+      /*
+      //Testing removeClass
+      console.log("Btn1 = " + document.getElementById("tryMe").className)
+      $$('button.btn1').addClass("newz")
+      console.log("Btn1 = " + document.getElementById("tryMe").className)
+      $$('button.btn1').removeClass("btn1")      
+      console.log("Btn1 = " + document.getElementById("tryMe").className)
+      */
 
 
 
