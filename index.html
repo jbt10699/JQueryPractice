@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="X-UA-Compatible"
+      content="IE=edge"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"
+    ></script>
+    <title>JQuery</title>
+  </head>
+  <body>
+    <h1 class="pageTitle">Jquery Practice</h1>
+    <button class="continue">Button 1</button>
+    <button class="continue">Button 2</button>
+    <button id="tryMe" class="btn1">Try Me</button>
+
+
+    <script>
+      class JohnQuery {
+        constructor(selector) {
+          // target the element
+          if (
+            (selector === window) |
+            (selector === document)
+          ) {
+            this.elements = [selector];
+          } else {
+            this.elements =
+              document.querySelectorAll(selector);
+          }
+        }
+        html(innerhtml) {
+          // change the innerHTML for the target element
+          this.elements.forEach((item) => {
+            item.innerHTML = innerhtml;
+          });
+          return this;
+        }
+        hide() {
+          this.elements.forEach((item) => {
+            item.preDispaly = item.style.display;
+            item.style.display = 'none';
+          });
+          return this;
+        }
+        on(eventType, callback) {
+          this.elements.forEach((item) => {
+            item.addEventListener(
+              eventType,
+              callback
+            );
+          });
+          return this;
+        }
+        show() {
+          this.elements.forEach((item) => {
+            item.style.display = item.preDispaly;
+          });
+          return this;
+        }
+        addClass(className){
+          this.elements.forEach((item)=> {
+            item.classList.add(className);
+          })
+        }
+      }
+
+      const $$ = function (selector) {
+        console.log('$$ is a function');
+        return new JohnQuery(selector);
+      };
+
+      //Testing functions down here
+      const a = $$('button.continue')
+        .html('testButton')
+        .on('click', () => {
+          console.log('Chaining');
+        });
+
+      $$('button.btn1')
+      .on('click', ()=> {
+        console.log("Class = ", $$('button.btn1').className);
+      })
+
+      /*
+      //Testing addClass
+      console.log("Btn1 = " + document.getElementById("tryMe").className)
+      $$('button.btn1').addClass("newz")
+      console.log("Btn1 = " + document.getElementById("tryMe").className)
+      */
+
+
+
+
+    </script>
+  </body>
+</html>
