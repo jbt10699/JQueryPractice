@@ -77,6 +77,15 @@
             item.classList.remove(className);
           })
         }
+        off(eventType, callback){
+          this.elements.forEach((item) => {
+            item.removeEventListener(
+              eventType,
+              callback
+            );
+          });
+          return this;
+        }
         hasClass(className){
           let result = false;
           this.elements.forEach((item)=> {
@@ -95,6 +104,8 @@
       };
 
       //Testing functions down here
+      function printHi(){console.log("Hi")}
+
       const a = $$('button.continue')
         .html('testButton')
         .on('click', () => {
@@ -102,9 +113,12 @@
         });
 
       $$('button.btn1')
-      .on('click', ()=> {
-        console.log("Class = ", $$('button.btn1').className);
-      })
+      .on('click', printHi);
+
+      /*
+      //Testing off
+      $$('button.btn1').off('click', printHi)
+        */
 
       /*
       //Testing addClass
